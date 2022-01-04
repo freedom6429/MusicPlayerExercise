@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A67C78427829057003079CA /* hipjazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A67C78327829057003079CA /* hipjazz.mp3 */; };
+		7A67C7862782905F003079CA /* jazzyfrenchy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A67C7852782905F003079CA /* jazzyfrenchy.mp3 */; };
+		7A67C7882782D0ED003079CA /* funkysuspense.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A67C7872782D0ED003079CA /* funkysuspense.mp3 */; };
+		7A67C78A2782D106003079CA /* sexy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A67C7892782D106003079CA /* sexy.mp3 */; };
+		7A7403FF277D4327002AEC69 /* thelounge.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A7403FE277D4327002AEC69 /* thelounge.mp3 */; };
 		7AFB7179277BFB790089E731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB7178277BFB790089E731 /* AppDelegate.swift */; };
 		7AFB717B277BFB790089E731 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB717A277BFB790089E731 /* SceneDelegate.swift */; };
 		7AFB717D277BFB790089E731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB717C277BFB790089E731 /* ViewController.swift */; };
 		7AFB7180277BFB790089E731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFB717E277BFB790089E731 /* Main.storyboard */; };
 		7AFB7182277BFB7A0089E731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AFB7181277BFB7A0089E731 /* Assets.xcassets */; };
 		7AFB7185277BFB7A0089E731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AFB7183277BFB7A0089E731 /* LaunchScreen.storyboard */; };
+		7AFB718D277C16C90089E731 /* allthat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7AFB718C277C16C90089E731 /* allthat.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A67C78327829057003079CA /* hipjazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hipjazz.mp3; sourceTree = "<group>"; };
+		7A67C7852782905F003079CA /* jazzyfrenchy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jazzyfrenchy.mp3; sourceTree = "<group>"; };
+		7A67C7872782D0ED003079CA /* funkysuspense.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = funkysuspense.mp3; sourceTree = "<group>"; };
+		7A67C7892782D106003079CA /* sexy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sexy.mp3; sourceTree = "<group>"; };
+		7A7403FE277D4327002AEC69 /* thelounge.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thelounge.mp3; sourceTree = "<group>"; };
 		7AFB7175277BFB790089E731 /* MusicPlayerExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayerExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFB7178277BFB790089E731 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFB717A277BFB790089E731 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +35,7 @@
 		7AFB7181277BFB7A0089E731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AFB7184277BFB7A0089E731 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AFB7186277BFB7A0089E731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AFB718C277C16C90089E731 /* allthat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = allthat.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,12 @@
 				7AFB7181277BFB7A0089E731 /* Assets.xcassets */,
 				7AFB7183277BFB7A0089E731 /* LaunchScreen.storyboard */,
 				7AFB7186277BFB7A0089E731 /* Info.plist */,
+				7AFB718C277C16C90089E731 /* allthat.mp3 */,
+				7A7403FE277D4327002AEC69 /* thelounge.mp3 */,
+				7A67C78327829057003079CA /* hipjazz.mp3 */,
+				7A67C7852782905F003079CA /* jazzyfrenchy.mp3 */,
+				7A67C7872782D0ED003079CA /* funkysuspense.mp3 */,
+				7A67C7892782D106003079CA /* sexy.mp3 */,
 			);
 			path = MusicPlayerExercise;
 			sourceTree = "<group>";
@@ -126,8 +144,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AFB7185277BFB7A0089E731 /* LaunchScreen.storyboard in Resources */,
+				7A67C7862782905F003079CA /* jazzyfrenchy.mp3 in Resources */,
+				7A67C78A2782D106003079CA /* sexy.mp3 in Resources */,
+				7A67C7882782D0ED003079CA /* funkysuspense.mp3 in Resources */,
+				7A67C78427829057003079CA /* hipjazz.mp3 in Resources */,
 				7AFB7182277BFB7A0089E731 /* Assets.xcassets in Resources */,
 				7AFB7180277BFB790089E731 /* Main.storyboard in Resources */,
+				7AFB718D277C16C90089E731 /* allthat.mp3 in Resources */,
+				7A7403FF277D4327002AEC69 /* thelounge.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +319,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -306,7 +331,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,6 +348,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -334,7 +360,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
