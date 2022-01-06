@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     //宣告index來擷取音樂清單內特定位置的item
     var index = 0
+    let player = AVPlayer()
+    var updatedTime = CMTime()
     //使用字典物件陣列音樂的相關檔案名稱與介面需要顯示的資料
     let musics = [
         ["fileName": "allthat",
@@ -53,6 +55,9 @@ class ViewController: UIViewController {
     
     //重複播放button
     @IBOutlet weak var loopButton: UIButton!
+    
+    //隨機播放button
+    @IBOutlet weak var shuffleButton: UIButton!
     
     //播放or暫停button
     @IBOutlet weak var playButton: UIButton!
@@ -96,7 +101,7 @@ class ViewController: UIViewController {
         playButton.setImage(pauseIcon, for: .selected)
     }
     
-    //將重複播放按鈕福片放大一點，並且設定重複及不重複模式個別顯示的按鈕
+    //將重複播放按鈕圖片放大一點，並且設定重複及不重複模式個別顯示的按鈕
     func switchLoopMode() {
         let config = UIImage.SymbolConfiguration(pointSize: 32, weight: .regular, scale: .medium)
         let loopModeOffIcon = UIImage(systemName: "repeat.circle", withConfiguration: config)
@@ -106,12 +111,19 @@ class ViewController: UIViewController {
         //.selected為重複模式
         loopButton.setImage(loopModeOnIcon, for: .selected)
     }
+    
+    //將隨機播放按鈕放大一點
+    func setShuffleButtonImage() {
+        let config = UIImage.SymbolConfiguration(pointSize: 32, weight: .regular, scale: .medium)
+        let shuffleIcon = UIImage(systemName: "shuffle.circle", withConfiguration: config)
+        shuffleButton.setImage(shuffleIcon, for: .normal)
+    }
 
     //格式化顯示音樂時間的函式，以Double型態的秒數為參數
     func formatedTime(_ secs: Double) -> String {
         var timeString = ""
         let formatter = DateComponentsFormatter()
-        //.positional樣式為將時間單位以冒號區分
+        //.positional樣式為將時間不同單位以冒號區隔
         formatter.unitsStyle = .positional
         //只需要使用分跟秒就好
         formatter.allowedUnits = [.minute, .second]
@@ -126,22 +138,26 @@ class ViewController: UIViewController {
         return timeString
     }
     
-
-    let player = AVPlayer()
-    var looper: AVPlayerLooper?
     
     func setMusicToPlay(fileName: String, index: Int) {
+        //生成playItem，並取代成為player的currentItem
         let filePath = Bundle.main.url(forResource: fileName, withExtension: ".mp3")!
         let playItem = AVPlayerItem(url: filePath)
         player.replaceCurrentItem(with: playItem)
+        //設定音樂名稱、作曲者、音樂圖片
         musicTitleLabel.text = musics[index]["title"]!
         composerLabel.text = musics[index]["composer"]!
         let musicPicture = UIImage(named: "\(musics[index]["fileName"]!).jpeg")
         musicPicImageView.image = musicPicture
+        //抓取playItem的時間長度並轉化為負數的剩餘時間，並調整播放時間的slider最大值
         let playItemDuration =  playItem.asset.duration.seconds
         durationLabel.text = formatedTime(0 - playItemDuration)
-        musicProgressBarSlider.maximumValue = Float(playItemDuration.rounded())
+        musicProgressBarSlider.maximumValue = Float(playItemDuration)
+        //重置目前播放時間為00:00
+        currentTimeLabel.text = formatedTime(0)
     }
+    
+    var isDragSlider = false
     
     //觀察播放音樂目前的時間函式
     func musicCurrentTime() {
@@ -151,17 +167,25 @@ class ViewController: UIViewController {
         //將player掛上週期性時間觀察器，除了最後更新介面的閉包外其餘參數皆是照抄官方文件和學長姐的作業
         player.addPeriodicTimeObserver(forInterval: time, queue: .main, using: { (time) in
             //如果目前播放的item狀態是可以正常播放的才執行裡面介面更新程式
-            if self.player.currentItem?.status == .readyToPlay{
+            if (self.player.currentItem?.status == .readyToPlay) && !self.isDragSlider {
                 //抓取目前音樂的時間
                 let currentTime = self.player.currentTime().seconds
-                //計算剩下多少時間
-                let leftTime =  (self.player.currentItem?.duration.seconds)! - currentTime
-                //設定目前時間label的text
-                self.currentTimeLabel.text = self.formatedTime(currentTime)
+                var leftTime =  (self.player.currentItem?.duration.seconds)!
+                //使用條件來處理手機模擬器會觀察到負數秒數的問題
+                if currentTime > 0 {
+                    //計算剩下多少時間
+                    leftTime =  (self.player.currentItem?.duration.seconds)! - currentTime
+                    //設定目前時間label的text
+                    self.currentTimeLabel.text = self.formatedTime(currentTime)
+                    //設定音樂播放時間slider的value
+                    self.musicProgressBarSlider.value = Float(currentTime)
+                } else {
+                    leftTime =  (self.player.currentItem?.duration.seconds)!
+                    self.currentTimeLabel.text = self.formatedTime(0)
+                    self.musicProgressBarSlider.value = Float(0)
+                }
                 //設定剩餘時間label的text，加上負號
                 self.durationLabel.text = "-\(self.formatedTime(leftTime))"
-                //設定音樂播放時間slider的value
-                self.musicProgressBarSlider.value = Float(currentTime)
             }
         })
     }
@@ -170,7 +194,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //呼際播放操作面板加入圓角函式
+        //呼叫播放操作面板加入圓角函式
         addRoundCorners(cornerRadius: 60)
         //設定播放按鈕圖片
         setPlayButtonImage()
@@ -178,6 +202,8 @@ class ViewController: UIViewController {
         setProgressBarThumb()
         //設定重複模式按鈕圖片
         switchLoopMode()
+        //設定隨機播放按鈕圖片
+        setShuffleButtonImage()
         //將要播放的音樂檔名擷取出來放到musicsToPlay陣列
         for music in musics {
             musicsToPlay.append(music["fileName"]!)
@@ -212,12 +238,24 @@ class ViewController: UIViewController {
     }
     
     //拉動播放進度slider會同時改變目前播放時間label及player的播放時間
-    @IBAction func changeProgressSlider(_ sender: UISlider) {
-        sender.value.round()
-        let time = CMTime(value: Int64(sender.value), timescale: 1)
-        currentTimeLabel.text = formatedTime(time.seconds)
-        player.seek(to: time)
+    
+    @IBAction func progressThumbPressed(_ sender: Any) {
+        isDragSlider = true
     }
+    
+    @IBAction func progreeThumbNotPressed(_ sender: Any) {
+        player.seek(to: updatedTime)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // Change `2.0` to the desired number of seconds.
+           // Code you want to be delayed
+            self.isDragSlider = false
+        }
+    }
+    
+    @IBAction func changeProgressSlider(_ sender: UISlider) {
+        updatedTime = CMTime(value: Int64(sender.value), timescale: 1)
+        currentTimeLabel.text = formatedTime(updatedTime.seconds)
+    }
+    
     
     //點按next按鈕會播放下一個item，若為暫停模式也會切換成播放模式
     @IBAction func nextButton(_ sender: Any) {
